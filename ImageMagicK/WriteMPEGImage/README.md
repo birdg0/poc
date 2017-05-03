@@ -1,3 +1,8 @@
+```
+$ identify -version
+Version: ImageMagick 7.0.5-6 Q16 x86_64 2017-05-02 http://www.imagemagick.org
+```
+
 Recursive calls are too deep to cause stack overflow in WriteMPEGImage.
 ```
 case 0:
