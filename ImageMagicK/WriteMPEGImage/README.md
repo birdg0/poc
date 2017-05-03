@@ -1,5 +1,4 @@
-WriteMPEGImage
-
+Recursive calls are too deep to cause stack overflow in WriteMPEGImage.
 ```
 case 0:
 {
@@ -11,8 +10,6 @@ case 0:
   break;
 }
 ```
-
-Recursive calls are too deep to cause stack overflow.
 
 BackTrace:
 ```
@@ -42,4 +39,10 @@ pwndbg> bt
 #22 0x00007ffff6a7a1f1 in WriteMPEGImage (image_info=0x3900a30, image=0x38fa280, exception=0x61b780) at coders/mpeg.c:544
 #23 0x00007ffff68c36aa in WriteImage (image_info=image_info@entry=0x38f6f90, image=image@entry=0x38fa280, exception=exception@entry=0x61b780) at MagickCore/constitute.c:1183
 ...
+#806 0x00007ffff6a7a1f1 in WriteMPEGImage (image_info=0x61b910, image=0x639850, exception=0x61b780) at coders/mpeg.c:544
+#807 0x00007ffff68c36aa in WriteImage (image_info=<optimized out>, image=0x639850, exception=0x61b780) at MagickCore/constitute.c:1183
+#808 0x00007ffff7ba85b3 in Magick::Image::write (this=0x7fffffffdd30, imageSpec_=...) at Magick++/lib/Image.cpp:4899
+#809 0x0000000000400d29 in main ()
+#810 0x00007ffff71fd830 in __libc_start_main (main=0x400c90 <main>, argc=1, argv=0x7fffffffde98, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7fffffffde88) at ../csu/libc-start.c:291
+#811 0x0000000000400de9 in _start ()
 ```
